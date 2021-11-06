@@ -4,8 +4,8 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <h2 class="text-center mb-5" > CRIPTOMONEDAS </h2>
-                <a type="button " href="{{ url('/crear')}}" class="btn btn-success btn-lg active mb-4 ">AGREGAR </a>
+                <h2 class="text-center mb-5" >LISTADO DE CRIPTOMONEDAS </h2>
+                <a type="button " href="{{ url('/crear')}}" class="btn btn-success btn-lg active mb-4 col-2 float-right ">AGREGAR </a>
 
                 <table class="table table-hover table-dark ">
                   <thead>
@@ -40,7 +40,7 @@
                                     </a>
 
                                     <!-- opcion para eliminar o borrar, boton-->
-                                    <form action="{{route('delete', $user->id)}}" method="post">
+                                    <form action="{{route('delete', $criptomoneda->id)}}" method="post">
                                         @csrf @method('DELETE')
 
                                         <button type="submit" onclick="return confirm('Eliminar Registro de Usuario');" class="btn btn-danger">
