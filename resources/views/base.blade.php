@@ -14,7 +14,7 @@
 <body>
 
 <!-- Image and text -->
-<nav class="navbar navbar-light bg-info">
+<nav class="navbar navbar-light bg-primary">
     <a class="navbar-brand" href="{{url('/')}}">
         <i class="fab fa-bitcoin fa-2x"></i>
         LISTADO CRIPTOMONEDA

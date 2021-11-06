@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 route::get("/",[\App\Http\Controllers\CriptomonedaController::class,'index']);
+route::get("/crear",[\App\Http\Controllers\CriptomonedaController::class,'create']);
 //Route::get('/', function () {
 //    return view('index');
 //});

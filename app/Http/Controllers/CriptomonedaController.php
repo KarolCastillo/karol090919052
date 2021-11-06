@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\criptomoneda;
 use Illuminate\Http\Request;
+use App\Models\criptomoneda;
+use Illuminate\Support\Facades\DB;
 
 class CriptomonedaController extends Controller
 {
@@ -14,7 +14,13 @@ class CriptomonedaController extends Controller
      */
     public function index()
     {
-        return view('criptomoneda.index');
+
+        $criptomoneda = DB::table('criptomoneda')
+
+            ->paginate(5);
+
+
+        return view('criptomoneda.index', compact('criptomoneda'));
     }
 
     /**
@@ -24,7 +30,7 @@ class CriptomonedaController extends Controller
      */
     public function create()
     {
-        //
+        return view('criptomoneda.crear');
     }
 
     /**
