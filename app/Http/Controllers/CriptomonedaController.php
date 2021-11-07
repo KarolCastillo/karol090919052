@@ -15,7 +15,7 @@ class CriptomonedaController extends Controller
        $criptomonedas = DB::table('criptomoneda')
            ->join('lenguaje_programacion', 'criptomoneda.lenguaje_id', '=', 'lenguaje_programacion.id')
            ->select('criptomoneda.*', 'lenguaje_programacion.descripcion_lenguaje')
-            ->paginate(2);
+            ->paginate(3);
 
 
         return view('archivo.index', compact('criptomonedas'));
@@ -28,7 +28,7 @@ class CriptomonedaController extends Controller
      */
     public function create()
     {
-       // return view('archivo.crear');
+
         $lenguaje = Lenguaje::all();
         return view('archivo.crear', compact('lenguaje'));
     }

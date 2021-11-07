@@ -24,8 +24,8 @@
                     @foreach($lenguajes as $lenguaje)
                         <tr>
 
-                            <td>{{$lenguaje->descripcion_lenguaje}}</td>
-                            <td>{{$lenguaje->definicion}}</td>
+                            <td class=" border px-4 py-2">{{$lenguaje->descripcion_lenguaje}}</td>
+                            <td class=" border px-4 py-2">{{$lenguaje->definicion}}</td>
 
                             <td>
                                 <div class="btn-group flex justify-center rounded-lg text-lg">
