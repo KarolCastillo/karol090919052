@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layouts.base')
 @section('content')
 
     <div class="container mt-5">
@@ -6,7 +6,7 @@
             <div class="col-md-10">
                 <h2 class="text-center mb-5" > FORMULARIO CREAR CRIPTOMONEDA </h2>
 
-                <form action="{{ url ('save') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url ('/save') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row font-italic ">
                         <div class="form-group col-md-6 ">
@@ -28,8 +28,12 @@
                         <div class="form-group col-md-4 font-italic">
                             <label for="inputState">LENGUAJE PROGRAMACION</label>
                             <select name="" class="form-control border border-success">
-                                <option selected>Seleccione lenguaje...</option>
-                                <option>...</option>
+                                <option value="" selected>Seleccione lenguaje...</option>
+
+
+                                <!--option> </option-->
+
+
                             </select>
                         </div>
 

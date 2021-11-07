@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\criptomoneda;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CriptomonedaController extends Controller
 {
@@ -15,12 +16,12 @@ class CriptomonedaController extends Controller
     public function index()
     {
 
-        $criptomoneda = DB::table('criptomoneda')
+       $criptomonedas = DB::table('criptomoneda')
 
             ->paginate(5);
 
 
-        return view('criptomoneda.index', compact('criptomoneda'));
+        return view('archivo.index', compact('criptomonedas'));
     }
 
     /**
@@ -30,7 +31,7 @@ class CriptomonedaController extends Controller
      */
     public function create()
     {
-        return view('criptomoneda.crear');
+        return view('archivo.crear');
     }
 
     /**
@@ -41,7 +42,38 @@ class CriptomonedaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+              $validation = $this->validate($request, [
+                'logotipo' => 'required',
+                'nombre' => 'required|string|max:75',
+                'precio' => 'required',
+                'descripcion'=>'required|string|max:255',
+//                'lenguaje' => 'required'
+            ]);
+        if($request->hasFile('imagen')){
+            $validation['logotipo'] = $request-> file('imagen')->store('imagen','public');
+        }
+//         $criptomoneda =$request->all();
+//            if($logotipo =$request->file('logotipo')){
+//                $rutaGuardarImg= 'imagen/';
+//                $imagenlogotipo=date('YmdHis')."." .$logotipo->getClientOriginalExtension();
+//                $logotipo->move($rutaGuardarImg,$imagenlogotipo);
+//                $logotipo['imagen'] = "$imagenlogotipo";
+//            }
+
+                 criptomoneda::create([
+                'logotipo'=>$validation['logotipo'],
+                'nombre'=>$validation['nombre'],
+                'precio'=>$validation['precio'],
+                'descripcion'=> $validation['descripcion'],
+//               'lenguaje_id'=> $validation['lenguaje'],
+   ]);
+
+        return redirect('/')->with('editar', 'ok');
+
+
+
+
     }
 
     /**
@@ -63,7 +95,8 @@ class CriptomonedaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cript = criptomoneda::findOrFail($id);
+        return view('archivo.editar', compact('cript'));
     }
 
     /**
@@ -73,10 +106,33 @@ class CriptomonedaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
-        //
+        $datacriptomoneda = request()->except((['_token','_method']));
+
+        /*Recolecion de logotipo*/
+        if($request->hasFile('imagen')){
+            $cript = criptomoneda::findOrFail($id);
+            Storage::delete('public/'.$cript->logotipo);
+            $criptomoneda ['logotipo'] = $request-> file('imagen')->store('imagen','public');
+        }
+
+        criptomoneda::where('id', '=', $id)->update($datacriptomoneda);
+
+        return redirect('/')->with('editar', 'ok');
     }
+
+//$validation = $this->validate($request, [
+//            'logotipo' => 'required',
+//            'nombre' => 'required|string|max:75',
+//            'precio' => 'required',
+//            'descripcion'=>'required|string|max:255',
+////                'lenguaje' => 'required'
+//        ]);
+//
+//
+//
+//    }
 
     /**
      * Remove the specified resource from storage.
@@ -86,6 +142,11 @@ class CriptomonedaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $criptomoneda = criptomoneda::findOrFail($id);
+
+        $criptomoneda->delete();
+
+
+        return back()->with('criptomonedaEliminado', 'Criptomoneda eliminada');
     }
 }
