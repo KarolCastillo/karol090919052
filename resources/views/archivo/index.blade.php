@@ -28,8 +28,8 @@
                         <tr>
 
                             <td class=" border px-4 py-2">
-                                <img src="/imagen/{{$criptomoneda->logotipo}}" width="60%">
-
+                                <!--img src="/imagen/" width="60%"-->
+                              <img src="{{ asset('storage').'/'.$criptomoneda->logotipo}}" alt="" height="80">
                             </td>
                             <td class=" border px-4 py-2">{{$criptomoneda->nombre}}</td>
                             <td class=" border px-5 py-2">{{$criptomoneda->precio}}</td>

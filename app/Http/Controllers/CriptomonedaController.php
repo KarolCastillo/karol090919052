@@ -48,16 +48,10 @@ class CriptomonedaController extends Controller
                 'descripcion'=>'required|string|max:255',
                'lenguaje' => 'required'
             ]);
-        if($request->hasFile('imagen')){
-            $validation['logotipo'] = $request-> file('imagen')->store('imagen','public');
+        if($request->hasFile('logotipo')){
+            $validation['logotipo'] = $request-> file('logotipo')->store('logos','public');
         }
-//         $criptomoneda =$request->all();
-//            if($logotipo =$request->file('logotipo')){
-//                $rutaGuardarImg= 'imagen/';
-//                $imagenlogotipo=date('YmdHis')."." .$logotipo->getClientOriginalExtension();
-//                $logotipo->move($rutaGuardarImg,$imagenlogotipo);
-//                $logotipo['imagen'] = "$imagenlogotipo";
-//            }
+
 
                  criptomoneda::create([
                 'logotipo'=>$validation['logotipo'],
@@ -67,7 +61,7 @@ class CriptomonedaController extends Controller
                'lenguaje_id'=> $validation['lenguaje'],
    ]);
 
-        return redirect('/')->with('editar', 'ok');
+        return redirect('/');
 
 
 
@@ -109,29 +103,21 @@ class CriptomonedaController extends Controller
     {
         $datacriptomoneda = request()->except((['_token','_method']));
 
-        /*Recolecion de logotipo*/
-        if($request->hasFile('imagen')){
-            $cript = criptomoneda::findOrFail($id);
-            Storage::delete('public/'.$cript->logotipo);
-            $criptomoneda ['logotipo'] = $request-> file('imagen')->store('imagen','public');
-        }
+
+        if($request->hasFile('logotipo')){
+            $criptomoneda = criptomoneda::findOrFail($id);
+            Storage::delete('public/'.$criptomoneda->logotipo);
+            $datacriptomoneda ['logotipo'] = $request-> file('logotipo')->store('logos','public');}
 
         criptomoneda::where('id', '=', $id)->update($datacriptomoneda);
 
-        return redirect('/')->with('editar', 'ok');
+        return redirect('/');
     }
 
-//$validation = $this->validate($request, [
-//            'logotipo' => 'required',
-//            'nombre' => 'required|string|max:75',
-//            'precio' => 'required',
-//            'descripcion'=>'required|string|max:255',
-////                'lenguaje' => 'required'
-//        ]);
+
 //
 //
-//
-//    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -143,10 +129,12 @@ class CriptomonedaController extends Controller
     {
         $criptomoneda = criptomoneda::findOrFail($id);
 
+
+
         $criptomoneda->delete();
 
 
 
-        return back()->with('criptomonedaEliminado', 'Criptomoneda eliminada');
+        return back();
     }
 }

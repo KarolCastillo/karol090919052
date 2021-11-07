@@ -42,12 +42,7 @@
                                     <option value="{{$lenguajes->id}}" > {{$lenguajes->descripcion_lenguaje}}  </option>
                                 @endforeach
                             </select>
-                            <!--select name="lenguaje" v-model="lenguaje.criptomoneda" class="selectpicker" required
-                                    data-none-Results-Text="No se encontro el lenguaje"
-                                    data-none-Selected-Text="Escoja un lenguaje" data-live-search="true">
-                                <option value="" hidden>Selecciona un lenguaje</option>
 
-                            </select-->
                         </div>
 
                     </div>
