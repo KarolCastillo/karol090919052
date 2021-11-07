@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 route::get("/",[\App\Http\Controllers\CriptomonedaController::class,'index']);
+route::get("/lenguaje",[\App\Http\Controllers\CriptomonedaController::class,'index']);
 route::get("/crear",[\App\Http\Controllers\CriptomonedaController::class,'create']);
 route::get("/editar/{id}",[\App\Http\Controllers\CriptomonedaController::class,'edit']);
 route::delete("/delete/{id}",[\App\Http\Controllers\CriptomonedaController::class,'destroy'])->name('destroy');

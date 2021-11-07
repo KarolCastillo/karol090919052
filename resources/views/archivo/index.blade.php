@@ -34,7 +34,7 @@
                             <td class=" border px-4 py-2">{{$criptomoneda->nombre}}</td>
                             <td class=" border px-5 py-2">{{$criptomoneda->precio}}</td>
                             <td class=" border px-8 py-2">{{$criptomoneda->descripcion}}</td>
-                            <td class=" border px-4 py-2">{{$criptomoneda->lenguaje_id}}</td>
+                            <td class=" border px-4 py-2">{{$criptomoneda->descripcion_lenguaje}}</td>
                             <td class=" border px-4 py-2">
                                 <div class="btn-group flex justify-center rounded-lg text-lg">
 

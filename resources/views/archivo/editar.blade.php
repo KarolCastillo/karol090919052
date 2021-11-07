@@ -28,11 +28,12 @@
 
                         <div class="form-group col-md-4 font-italic">
                             <label for="inputState">LENGUAJE PROGRAMACION</label>
-                            <select name="" class="form-control border border-success">
-                                <option value="" selected>Seleccione lenguaje...</option>
+                            <select name="lenguaje_id" class="form-control border border-success">
+                                <option value="" >Seleccione lenguaje...</option>
 
-
-                                <!--option> </option-->
+                                @foreach( $lenguaje as $lenguajes)
+                                    <option value="{{$lenguajes->id}}" class="text-center"> {{$lenguajes->descripcion_lenguaje}}  </option>
+                                @endforeach
 
 
                             </select>

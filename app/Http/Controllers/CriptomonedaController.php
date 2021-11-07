@@ -9,17 +9,13 @@ use App\Models\Lenguaje;
 
 class CriptomonedaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
        $criptomonedas = DB::table('criptomoneda')
-
-            ->paginate(5);
+           ->join('lenguaje_programacion', 'criptomoneda.lenguaje_id', '=', 'lenguaje_programacion.id')
+           ->select('criptomoneda.*', 'lenguaje_programacion.descripcion_lenguaje')
+            ->paginate(2);
 
 
         return view('archivo.index', compact('criptomonedas'));
@@ -47,7 +43,7 @@ class CriptomonedaController extends Controller
     {
               $validation = $this->validate($request, [
                 'logotipo' => 'required',
-                'nombre' => 'required|string|max:75',
+                'nombre' => 'required|string|max:35',
                 'precio' => 'required',
                 'descripcion'=>'required|string|max:255',
                'lenguaje' => 'required'
@@ -98,7 +94,8 @@ class CriptomonedaController extends Controller
     public function edit($id)
     {
         $cript = criptomoneda::findOrFail($id);
-        return view('archivo.editar', compact('cript'));
+        $lenguaje= Lenguaje::all();
+        return view('archivo.editar', compact('cript', 'lenguaje'));
     }
 
     /**

@@ -4,6 +4,15 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <h2 class="text-center mb-5" > FORMULARIO CREAR CRIPTOMONEDA </h2>
 
                 <form action="{{ url ('/save') }}" method="POST" enctype="multipart/form-data">
@@ -30,7 +39,7 @@
                             <select name="lenguaje" class="form-control border border-success">
                                 <option value="" >Seleccione lenguaje...</option>
                                 @foreach( $lenguaje as $lenguajes)
-                                    <option value="{{$lenguajes->id}}" class="text-center"> {{$lenguajes->descripcion}}  </option>
+                                    <option value="{{$lenguajes->id}}" > {{$lenguajes->descripcion_lenguaje}}  </option>
                                 @endforeach
                             </select>
                             <!--select name="lenguaje" v-model="lenguaje.criptomoneda" class="selectpicker" required

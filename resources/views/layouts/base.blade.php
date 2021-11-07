@@ -20,6 +20,13 @@
         LISTADO CRIPTOMONEDA
     </a>
 
+    <a class="navbar-brand float-left" href="{{url('/lenguaje')}}">
+        <i class="fas fa-code fa-2x"></i>
+        LISTADO LENGUAJE PROGRAMACION
+    </a>
+
+
+
 
 </nav>
 <div class="container">
