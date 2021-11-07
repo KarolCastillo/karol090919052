@@ -26,15 +26,19 @@
                     <div class="form-row">
 
                         <div class="form-group col-md-4 font-italic">
-                            <label for="inputState">LENGUAJE PROGRAMACION</label>
-                            <select name="" class="form-control border border-success">
-                                <option value="" selected>Seleccione lenguaje...</option>
-
-
-                                <!--option> </option-->
-
-
+                            <label for="">LENGUAJE PROGRAMACION</label>
+                            <select name="lenguaje" class="form-control border border-success">
+                                <option value="" >Seleccione lenguaje...</option>
+                                @foreach( $lenguaje as $lenguajes)
+                                    <option value="{{$lenguajes->id}}" class="text-center"> {{$lenguajes->descripcion}}  </option>
+                                @endforeach
                             </select>
+                            <!--select name="lenguaje" v-model="lenguaje.criptomoneda" class="selectpicker" required
+                                    data-none-Results-Text="No se encontro el lenguaje"
+                                    data-none-Selected-Text="Escoja un lenguaje" data-live-search="true">
+                                <option value="" hidden>Selecciona un lenguaje</option>
+
+                            </select-->
                         </div>
 
                     </div>

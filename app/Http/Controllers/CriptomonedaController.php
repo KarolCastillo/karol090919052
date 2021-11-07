@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\criptomoneda;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Lenguaje;
 
 class CriptomonedaController extends Controller
 {
@@ -31,7 +32,9 @@ class CriptomonedaController extends Controller
      */
     public function create()
     {
-        return view('archivo.crear');
+       // return view('archivo.crear');
+        $lenguaje = Lenguaje::all();
+        return view('archivo.crear', compact('lenguaje'));
     }
 
     /**
@@ -42,13 +45,12 @@ class CriptomonedaController extends Controller
      */
     public function store(Request $request)
     {
-
               $validation = $this->validate($request, [
                 'logotipo' => 'required',
                 'nombre' => 'required|string|max:75',
                 'precio' => 'required',
                 'descripcion'=>'required|string|max:255',
-//                'lenguaje' => 'required'
+               'lenguaje' => 'required'
             ]);
         if($request->hasFile('imagen')){
             $validation['logotipo'] = $request-> file('imagen')->store('imagen','public');
@@ -66,7 +68,7 @@ class CriptomonedaController extends Controller
                 'nombre'=>$validation['nombre'],
                 'precio'=>$validation['precio'],
                 'descripcion'=> $validation['descripcion'],
-//               'lenguaje_id'=> $validation['lenguaje'],
+               'lenguaje_id'=> $validation['lenguaje'],
    ]);
 
         return redirect('/')->with('editar', 'ok');
@@ -145,6 +147,7 @@ class CriptomonedaController extends Controller
         $criptomoneda = criptomoneda::findOrFail($id);
 
         $criptomoneda->delete();
+
 
 
         return back()->with('criptomonedaEliminado', 'Criptomoneda eliminada');
