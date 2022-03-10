@@ -42,19 +42,17 @@ class CriptomonedaController extends Controller
     public function store(Request $request)
     {
               $validation = $this->validate($request, [
-                'logotipo' => 'required',
                 'nombre' => 'required|string|max:35',
                 'precio' => 'required',
                 'descripcion'=>'required|string|max:255',
                'lenguaje' => 'required'
             ]);
-        if($request->hasFile('logotipo')){
-            $validation['logotipo'] = $request-> file('logotipo')->store('logos','public');
-        }
+
+
 
 
                  criptomoneda::create([
-                'logotipo'=>$validation['logotipo'],
+
                 'nombre'=>$validation['nombre'],
                 'precio'=>$validation['precio'],
                 'descripcion'=> $validation['descripcion'],
@@ -104,10 +102,6 @@ class CriptomonedaController extends Controller
         $datacriptomoneda = request()->except((['_token','_method']));
 
 
-        if($request->hasFile('logotipo')){
-            $criptomoneda = criptomoneda::findOrFail($id);
-            Storage::delete('public/'.$criptomoneda->logotipo);
-            $datacriptomoneda ['logotipo'] = $request-> file('logotipo')->store('logos','public');}
 
         criptomoneda::where('id', '=', $id)->update($datacriptomoneda);
 

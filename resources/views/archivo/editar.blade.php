@@ -44,13 +44,7 @@
                     <div class="grid grid-cols-1 mt-1 mx-7">
                         <img id="logotipoSeleccionada" style="max-height: 300px;">
                     </div>
-                    <div class="grid grid-cols-1 mt-5 mx-7 font-italic">
-                        <label for="inputState">SUBIR LOGOTIPO</label>
-                        <div class="flex items-center justify-center w-full">
-                            <input name="logotipo" value="{{ $cript->logotipo }}" id="logotipo" type="file" class="hidden ">
 
-                        </div>
-                    </div>
 
                     <button type="submit" class="btn btn-primary btn-lg active mb-4 col-2 float-right border border-info "> GUARDAR </button>
                     <a type="button " href="{{ url('/')}}" class="btn btn-danger btn-lg active mb-4 col-2 float-right mr-3">CANCELAR </a>

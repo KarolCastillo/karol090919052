@@ -9,6 +9,11 @@
                 <form action="{{ url ('/guardar') }}" method="POST" >
                     @csrf
 
+                    <div class="form-group font-italic  ">
+                        <label for="inputEmail4">ID</label>
+                        <input type="text" name="id" class="form-control border border-success"  placeholder="0">
+                    </div>
+
                      <div class="form-group font-italic  ">
                        <label for="inputEmail4">NOMBRE</label>
                        <input type="text" name="descripcion_lenguaje" class="form-control border border-success"  placeholder="Ej. C++">

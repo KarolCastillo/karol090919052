@@ -10,7 +10,7 @@ class criptomoneda extends Model
     protected $table='criptomoneda';
     public $timestamps=false;
     protected $fillable=[
-        'id','logotipo', 'nombre','precio','descripcion', 'lenguaje_id',
+        'id', 'nombre','precio','descripcion', 'lenguaje_id',
     ];
 
     protected $primaryKey='id';

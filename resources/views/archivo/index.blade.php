@@ -11,7 +11,7 @@
                   <thead>
                     <tr>
 
-                        <th class="border px-4 py-2 text-center">LOGOTIPO</th>
+
                         <th class="border px-4 py-2 text-center">NOMBRE</th>
                         <th class="border px-4 py-2 text-center">PRECIO Q</th>
                         <th class="border px-4 py-2 text-center">DESCRIPCION</th>
@@ -27,10 +27,7 @@
                     @foreach($criptomonedas as $criptomoneda)
                         <tr>
 
-                            <td class=" border px-4 py-2">
-                                <!--img src="/imagen/" width="60%"-->
-                              <img src="{{ asset('storage').'/'.$criptomoneda->logotipo}}" alt="" height="80">
-                            </td>
+
                             <td class=" border px-4 py-2">{{$criptomoneda->nombre}}</td>
                             <td class=" border px-5 py-2">{{$criptomoneda->precio}}</td>
                             <td class=" border px-8 py-2">{{$criptomoneda->descripcion}}</td>

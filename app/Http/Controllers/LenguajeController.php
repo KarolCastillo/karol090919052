@@ -17,7 +17,7 @@ class LenguajeController extends Controller
     public function store(Request $request)
     {
         $validation = $this->validate($request, [
-
+            'id'=>'required',
             'descripcion_lenguaje' => 'required',
             'definicion'=>'required',
 
@@ -25,6 +25,7 @@ class LenguajeController extends Controller
 
         lenguaje::create([
 
+            'id'=> $validation['id'],
             'descripcion_lenguaje'=>$validation['descripcion_lenguaje'],
             'definicion'=> $validation['definicion'],
 
